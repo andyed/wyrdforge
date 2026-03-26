@@ -1,0 +1,69 @@
+{
+  "id": "ucsc-moonbeam",
+  "status": "active",
+  "name": "Moonbeam McGee",
+  "level": 3,
+  "speciesId": "species-elf",
+  "backgroundId": "bg-hermit",
+  "classId": "class-druid",
+  "subclass": "Circle of the Redwoods",
+  "baseAbilityScores": { "strength": 8, "dexterity": 14, "constitution": 12, "intelligence": 13, "wisdom": 15, "charisma": 10 },
+  "backgroundAsi": { "mode": "two", "plus2": "wisdom", "plus1": "constitution" },
+  "hitPoints": { "max": 24, "current": 24, "temp": 0 },
+  "deathSaves": { "successes": 0, "failures": 0 },
+  "skillProficiencies": ["nature", "perception", "medicine", "religion"],
+  "skillExpertise": [],
+  "toolProficiencies": ["Herbalism Kit"],
+  "languages": ["Common", "Elvish", "Druidic"],
+  "armorProficiencies": ["Light Armor", "Shields"],
+  "weaponProficiencies": ["Simple Weapons"],
+  "savingThrowProficiencies": ["intelligence", "wisdom"],
+  "featIds": ["feat-healer"],
+  "weaponMasteries": [],
+  "spellsKnown": ["spell-druidcraft", "spell-produce-flame", "spell-shillelagh", "spell-cure-wounds", "spell-faerie-fire", "spell-healing-word"],
+  "spellsPrepared": ["spell-cure-wounds", "spell-faerie-fire", "spell-healing-word"],
+  "spellSlotsUsed": [],
+  "equipment": [],
+  "currency": { "cp": 0, "sp": 0, "ep": 0, "gp": 8, "pp": 0 },
+  "customActions": [
+    {
+      "id": "shillelagh-bonk",
+      "name": "Shillelagh Bonk (Driftwood Staff)",
+      "rollType": "attack",
+      "dice": [{ "count": 1, "sides": 20 }],
+      "flatModifier": 6,
+      "description": "Wisdom-based melee. The staff was found at Natural Bridges beach."
+    },
+    {
+      "id": "wild-shape-banana-slug",
+      "name": "Wild Shape: Giant Banana Slug",
+      "rollType": "custom",
+      "dice": [{ "count": 2, "sides": 8 }],
+      "flatModifier": 2,
+      "description": "HP of wild shape form. Slug form has 30ft climb, acid trail, and can fit through any gap."
+    },
+    {
+      "id": "produce-flame-vampire",
+      "name": "Produce Flame (anti-vampire)",
+      "rollType": "attack",
+      "dice": [{ "count": 1, "sides": 20 }],
+      "flatModifier": 6,
+      "description": "Ranged spell attack. 1d8 fire + 1d4 radiant vs undead (homebrew)."
+    }
+  ],
+  "customFeatures": [
+    { "level": 1, "name": "Redwood Bond", "description": "Can communicate with trees in the UCSC campus forest. They gossip constantly." },
+    { "level": 2, "name": "Wild Shape", "description": "2 uses per short rest. Favorite form: banana slug (obviously)." },
+    { "level": 3, "name": "Fungal Network", "description": "Can send messages through mycelium networks under campus. Takes 1d4 minutes. Sometimes the mushrooms editorialize." }
+  ],
+  "notes": {
+    "personalityTraits": "Makes her own kombucha. It's sentient. Refers to all trees by first name.",
+    "ideals": "Nature doesn't need saving — it needs allies. Also vampires are NOT part of the natural order.",
+    "bonds": "The ancient redwood behind Porter College whispered the vampire threat to me first.",
+    "flaws": "Refuses to use processed anything. Once failed a mission because she wouldn't eat trail mix with M&Ms.",
+    "backstory": "Environmental Studies grad student who discovered actual druidic power during a protest to save a campus meadow from development. The meadow turned out to be a convergence of ley lines. Now she's the only thing standing between UCSC's ecosystem and a coven of vampires nesting in the old lime kilns. Her advisor thinks her thesis on 'Mycorrhizal Communication Networks' is metaphorical. It is not.",
+    "freeform": "Has a pet banana slug named 'Sammy' who may or may not be her familiar. Won't confirm or deny."
+  },
+  "createdAt": "2026-03-25T00:00:00.000Z",
+  "updatedAt": "2026-03-25T00:00:00.000Z"
+}

@@ -1,0 +1,70 @@
+{
+  "id": "ucsc-byte",
+  "status": "active",
+  "name": "Byte Nakamura",
+  "level": 3,
+  "speciesId": "species-halfling",
+  "backgroundId": "bg-sage",
+  "classId": "class-wizard",
+  "subclass": "School of Technomancy",
+  "baseAbilityScores": { "strength": 8, "dexterity": 14, "constitution": 10, "intelligence": 15, "wisdom": 12, "charisma": 13 },
+  "backgroundAsi": { "mode": "two", "plus2": "intelligence", "plus1": "dexterity" },
+  "hitPoints": { "max": 16, "current": 16, "temp": 0 },
+  "deathSaves": { "successes": 0, "failures": 0 },
+  "skillProficiencies": ["arcana", "history", "investigation", "perception"],
+  "skillExpertise": [],
+  "toolProficiencies": ["Calligrapher's Supplies (Mechanical Keyboard)"],
+  "languages": ["Common", "Halfling", "Python", "JavaScript"],
+  "armorProficiencies": [],
+  "weaponProficiencies": ["Simple Weapons"],
+  "savingThrowProficiencies": ["intelligence", "wisdom"],
+  "featIds": ["feat-magic-initiate-arcane"],
+  "weaponMasteries": [],
+  "spellsKnown": ["spell-fire-bolt", "spell-mage-hand", "spell-minor-illusion", "spell-prestidigitation", "spell-magic-missile", "spell-shield", "spell-detect-magic", "spell-disguise-self"],
+  "spellsPrepared": ["spell-magic-missile", "spell-shield", "spell-detect-magic", "spell-disguise-self"],
+  "spellSlotsUsed": [],
+  "equipment": [],
+  "currency": { "cp": 0, "sp": 0, "ep": 0, "gp": 12, "pp": 0 },
+  "customActions": [
+    {
+      "id": "debug-blast",
+      "name": "Debug Blast (Fire Bolt reskin)",
+      "rollType": "attack",
+      "dice": [{ "count": 1, "sides": 20 }],
+      "flatModifier": 6,
+      "description": "Ranged spell attack. A beam of error messages hits the target. 1d10 fire damage."
+    },
+    {
+      "id": "stack-overflow",
+      "name": "Stack Overflow (Magic Missile reskin)",
+      "rollType": "damage",
+      "dice": [{ "count": 3, "sides": 4 }],
+      "flatModifier": 3,
+      "description": "Three recursive function calls that always hit. 1d4+1 force damage each."
+    },
+    {
+      "id": "firewall",
+      "name": "Firewall (Shield reskin)",
+      "rollType": "custom",
+      "dice": [],
+      "flatModifier": 5,
+      "description": "Reaction: +5 AC until start of next turn. A holographic firewall appears."
+    }
+  ],
+  "customFeatures": [
+    { "level": 1, "name": "Spellbook (GitHub Repository)", "description": "Spells stored in a private repo. Ritual casting = running the CI pipeline." },
+    { "level": 1, "name": "Arcane Recovery (Ctrl+Z)", "description": "Once per long rest, recover spell slots during a short rest. Requires a laptop." },
+    { "level": 2, "name": "Scholar (Arcana Expert)", "description": "Double proficiency on Arcana checks. Can identify magical code smell." },
+    { "level": 3, "name": "Overclock", "description": "Once per day, cast a spell one level higher than the slot used. CPU fan noise intensifies." }
+  ],
+  "notes": {
+    "personalityTraits": "Types during combat. Treats spell components as npm packages. Has opinions about tabs vs spaces that border on religious.",
+    "ideals": "All problems are debugging problems. Vampires are just a type error in the natural order.",
+    "bonds": "My laptop contains a spell that could end the vampire threat, but it's in a legacy codebase with no documentation.",
+    "flaws": "Cannot function without coffee. Has mass-deployed Detect Magic to campus WiFi and it keeps pinging false positives on the engineering building.",
+    "backstory": "CS major at Baskin Engineering who accidentally compiled an actual spellbook while trying to parse a medieval manuscript for a digital humanities elective. Now writes spells in Python and casts them through a custom terminal emulator. Discovered the vampire coven when their supernatural interference kept crashing the campus network at 3am. Byte thought it was a DDoS attack. It was worse.",
+    "freeform": "Familiar is a mass of floating semicolons named 'Lint'. Byte insists it's a valid creature type."
+  },
+  "createdAt": "2026-03-25T00:00:00.000Z",
+  "updatedAt": "2026-03-25T00:00:00.000Z"
+}

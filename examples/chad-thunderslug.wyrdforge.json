@@ -1,0 +1,62 @@
+{
+  "id": "ucsc-chad",
+  "status": "active",
+  "name": "Chad Thunderslug",
+  "level": 3,
+  "speciesId": "species-human",
+  "backgroundId": "bg-entertainer",
+  "classId": "class-barbarian",
+  "subclass": "Path of the Banana Slug",
+  "baseAbilityScores": { "strength": 15, "dexterity": 10, "constitution": 14, "intelligence": 8, "wisdom": 12, "charisma": 13 },
+  "backgroundAsi": { "mode": "two", "plus2": "strength", "plus1": "charisma" },
+  "hitPoints": { "max": 35, "current": 35, "temp": 0 },
+  "deathSaves": { "successes": 0, "failures": 0 },
+  "skillProficiencies": ["athletics", "intimidation", "acrobatics", "performance"],
+  "skillExpertise": [],
+  "toolProficiencies": ["Surfboard (Musical Instrument)"],
+  "languages": ["Common", "Surfer Slang"],
+  "armorProficiencies": ["Light Armor", "Medium Armor", "Shields"],
+  "weaponProficiencies": ["Simple Weapons", "Martial Weapons"],
+  "savingThrowProficiencies": ["strength", "constitution"],
+  "featIds": ["feat-tavern-brawler"],
+  "weaponMasteries": ["topple", "cleave"],
+  "spellsKnown": [],
+  "spellsPrepared": [],
+  "spellSlotsUsed": [],
+  "equipment": [],
+  "currency": { "cp": 0, "sp": 0, "ep": 0, "gp": 15, "pp": 0 },
+  "customActions": [
+    {
+      "id": "slug-rage",
+      "name": "Slug Rage (Bonus Action)",
+      "rollType": "custom",
+      "dice": [{ "count": 1, "sides": 4 }],
+      "flatModifier": 0,
+      "description": "Gain +2 rage damage. Your skin secretes a mucus coating that gives attackers disadvantage on grapple checks."
+    },
+    {
+      "id": "keg-stand-slam",
+      "name": "Keg Stand Slam",
+      "rollType": "attack",
+      "dice": [{ "count": 1, "sides": 20 }],
+      "flatModifier": 7,
+      "description": "Flip upside down on a keg, then slam it. On hit, target is prone.",
+      "linkedDamage": { "dice": [{ "count": 1, "sides": 12 }], "flatModifier": 5, "damageType": "bludgeoning" }
+    }
+  ],
+  "customFeatures": [
+    { "level": 1, "name": "Unarmored Defense (Wetsuit)", "description": "AC = 10 + DEX + CON. Works in board shorts." },
+    { "level": 2, "name": "Reckless Shredding", "description": "Attack recklessly. You wipe out more, but you shred harder." },
+    { "level": 3, "name": "Slug Trail", "description": "When you rage, you leave a 5-ft trail of slime. Difficult terrain for enemies." }
+  ],
+  "notes": {
+    "personalityTraits": "Says 'gnarly' unironically. Once arm-wrestled a redwood and won.",
+    "ideals": "The best waves are the ones you catch at dawn. Also, punching vampires.",
+    "bonds": "My surfboard 'Gnarlsbad' was carved from a vampire-staked oak.",
+    "flaws": "Cannot resist a dare. Once ate a ghost pepper before fighting a lich.",
+    "backstory": "UCSC Marine Bio major who discovered his rage powers during a particularly gnarly wipeout at Steamer Lane. Now he fights the undead that lurk in the Santa Cruz sea caves by night and attends 8am labs by day. His thesis is on 'Gastropod Defense Mechanisms as Applied to Vampire Hunting'.",
+    "freeform": "Catchphrase: 'Time to get SLUGGISH' (said while raging, which makes no sense but the party loves it)"
+  },
+  "createdAt": "2026-03-25T00:00:00.000Z",
+  "updatedAt": "2026-03-25T00:00:00.000Z"
+}

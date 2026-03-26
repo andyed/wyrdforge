@@ -1,0 +1,70 @@
+{
+  "id": "ucsc-dj",
+  "status": "active",
+  "name": "DJ Stakeout (Derek Jimenez)",
+  "level": 3,
+  "speciesId": "species-human",
+  "backgroundId": "bg-criminal",
+  "classId": "class-rogue",
+  "subclass": "Soulknife (Turntable Assassin)",
+  "baseAbilityScores": { "strength": 10, "dexterity": 15, "constitution": 12, "intelligence": 13, "wisdom": 14, "charisma": 8 },
+  "backgroundAsi": { "mode": "two", "plus2": "dexterity", "plus1": "intelligence" },
+  "hitPoints": { "max": 21, "current": 21, "temp": 0 },
+  "deathSaves": { "successes": 0, "failures": 0 },
+  "skillProficiencies": ["stealth", "sleight_of_hand", "investigation", "perception", "acrobatics", "deception"],
+  "skillExpertise": ["stealth", "sleight_of_hand"],
+  "toolProficiencies": ["Thieves' Tools", "DJ Equipment"],
+  "languages": ["Common", "Thieves' Cant"],
+  "armorProficiencies": ["Light Armor"],
+  "weaponProficiencies": ["Simple Weapons", "Martial Weapons (Finesse or Light)"],
+  "savingThrowProficiencies": ["dexterity", "intelligence"],
+  "featIds": ["feat-alert"],
+  "weaponMasteries": ["vex", "nick"],
+  "spellsKnown": [],
+  "spellsPrepared": [],
+  "spellSlotsUsed": [],
+  "equipment": [],
+  "currency": { "cp": 0, "sp": 0, "ep": 0, "gp": 20, "pp": 0 },
+  "customActions": [
+    {
+      "id": "vinyl-shuriken",
+      "name": "Vinyl Shuriken (Thrown Dagger reskin)",
+      "rollType": "attack",
+      "dice": [{ "count": 1, "sides": 20 }],
+      "flatModifier": 7,
+      "description": "Throws a sharpened vinyl record. 20/60 range. Sneak attack eligible."
+    },
+    {
+      "id": "sneak-attack",
+      "name": "Sneak Attack (2d6)",
+      "rollType": "damage",
+      "dice": [{ "count": 2, "sides": 6 }],
+      "flatModifier": 0,
+      "description": "Extra damage when you have advantage or an ally within 5ft of target."
+    },
+    {
+      "id": "drop-the-beat",
+      "name": "Drop the Beat (Cunning Action: Disengage)",
+      "rollType": "custom",
+      "dice": [],
+      "flatModifier": 0,
+      "description": "Bonus action disengage. You scratch a sick transition and vanish into the crowd."
+    }
+  ],
+  "customFeatures": [
+    { "level": 1, "name": "Expertise (Stealth, Sleight of Hand)", "description": "Double proficiency. Can pickpocket a vampire's fangs." },
+    { "level": 1, "name": "Sneak Attack", "description": "2d6 at level 3. The bass drops. So does the enemy." },
+    { "level": 2, "name": "Cunning Action", "description": "Bonus action: Dash, Disengage, or Hide. Always accompanied by a sound effect." },
+    { "level": 3, "name": "Psychic Whispers", "description": "Telepathic communication with party members. Uses it to coordinate ambushes and take drink orders simultaneously." }
+  ],
+  "notes": {
+    "personalityTraits": "Never takes off his headphones. Claims he can 'hear the vampires' heartbeats' (vampires don't have heartbeats, the party has stopped correcting him).",
+    "ideals": "The night belongs to the music. And the music says these vampires gotta go.",
+    "bonds": "KZSC campus radio gave me my start. Now the station's signal is being jammed by vampire interference and it's personal.",
+    "flaws": "Cannot be stealthy if there's a good beat playing. Has blown three ambushes because he started beatboxing.",
+    "backstory": "KZSC DJ and Film & Digital Media major who discovered that certain bass frequencies physically hurt vampires. His late-night radio show 'Stakeout Sessions' is secretly a vampire deterrent broadcast. The vampires figured this out and attacked the station. Now Derek fights back with weaponized vinyl, psychic turntablism, and an unshakeable conviction that the right playlist can solve any problem. His DJ name is a double meaning and he's very proud of it.",
+    "freeform": "Signature move: throws a garlic-infused record while yelling 'THIS TRACK IS FIRE' (it is not literally fire, that's Byte's job)"
+  },
+  "createdAt": "2026-03-25T00:00:00.000Z",
+  "updatedAt": "2026-03-25T00:00:00.000Z"
+}
