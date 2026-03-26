@@ -1,0 +1,88 @@
+import type { Feat } from '../types/content.ts';
+
+export const srdFeats: Feat[] = [
+  {
+    id: 'feat-alert',
+    source: 'srd',
+    name: 'Alert',
+    category: 'origin',
+    description: 'You gain a +8 bonus to Initiative. You also have Advantage on Initiative rolls. In addition, you can swap your Initiative with an ally at the start of combat.',
+  },
+  {
+    id: 'feat-crafter',
+    source: 'srd',
+    name: 'Crafter',
+    category: 'origin',
+    description: 'You gain proficiency with three Artisan\'s Tools of your choice. Whenever you buy a nonmagical item, you pay 20% less for it. When you craft an item using a tool with which you have proficiency, the required crafting time is reduced by 20%.',
+  },
+  {
+    id: 'feat-healer',
+    source: 'srd',
+    name: 'Healer',
+    category: 'origin',
+    description: 'You have proficiency in the Medicine skill. As an action, you can spend one use of a Healer\'s Kit to tend to a creature and restore 2d6 + the creature\'s level hit points. The creature can\'t regain hit points from this feat again until it finishes a Short or Long Rest.',
+  },
+  {
+    id: 'feat-lucky',
+    source: 'srd',
+    name: 'Lucky',
+    category: 'origin',
+    description: 'You have a number of Luck Points equal to your Proficiency Bonus. You can spend a Luck Point to give yourself Advantage on a D20 Test or impose Disadvantage on an attack roll against you. You regain expended Luck Points when you finish a Long Rest.',
+  },
+  {
+    id: 'feat-magic-initiate-arcane',
+    source: 'srd',
+    name: 'Magic Initiate (Arcane)',
+    category: 'origin',
+    description: 'You learn two cantrips and one 1st-level spell from the Arcane spell list. You can cast the 1st-level spell once without a spell slot, regaining the ability to do so on a Long Rest. Intelligence, Wisdom, or Charisma is your spellcasting ability (choose when you select this feat).',
+  },
+  {
+    id: 'feat-magic-initiate-divine',
+    source: 'srd',
+    name: 'Magic Initiate (Divine)',
+    category: 'origin',
+    description: 'You learn two cantrips and one 1st-level spell from the Divine spell list. You can cast the 1st-level spell once without a spell slot, regaining the ability to do so on a Long Rest. Intelligence, Wisdom, or Charisma is your spellcasting ability (choose when you select this feat).',
+  },
+  {
+    id: 'feat-magic-initiate-primal',
+    source: 'srd',
+    name: 'Magic Initiate (Primal)',
+    category: 'origin',
+    description: 'You learn two cantrips and one 1st-level spell from the Primal spell list. You can cast the 1st-level spell once without a spell slot, regaining the ability to do so on a Long Rest. Intelligence, Wisdom, or Charisma is your spellcasting ability (choose when you select this feat).',
+  },
+  {
+    id: 'feat-musician',
+    source: 'srd',
+    name: 'Musician',
+    category: 'origin',
+    description: 'You gain proficiency with three Musical Instruments of your choice. After finishing a Short or Long Rest, you can play a song to give Heroic Inspiration to allies who hear it (up to your Proficiency Bonus number of allies).',
+  },
+  {
+    id: 'feat-savage-attacker',
+    source: 'srd',
+    name: 'Savage Attacker',
+    category: 'origin',
+    description: 'You\'ve trained to deal particularly damaging strikes. Once per turn when you hit a target with a weapon, you can roll the damage dice twice and use either roll against the target.',
+  },
+  {
+    id: 'feat-skilled',
+    source: 'srd',
+    name: 'Skilled',
+    category: 'origin',
+    description: 'You gain proficiency in any combination of three skills or tools of your choice.',
+  },
+  {
+    id: 'feat-tavern-brawler',
+    source: 'srd',
+    name: 'Tavern Brawler',
+    category: 'origin',
+    description: 'You gain proficiency with Improvised Weapons. When you hit with an Unarmed Strike or Improvised Weapon on your turn, you can deal 1d4 extra damage and push the target 5 feet away. You can also reroll 1s on damage dice for Unarmed Strikes.',
+  },
+  {
+    id: 'feat-tough',
+    source: 'srd',
+    name: 'Tough',
+    category: 'origin',
+    description: 'Your Hit Point maximum increases by an amount equal to twice your level when you gain this feat. Whenever you gain a level thereafter, your Hit Point maximum increases by an additional 2 Hit Points.',
+  },
+];

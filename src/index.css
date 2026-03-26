@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+}
+
+/* Forge metallic gradients */
+.forge-gradient {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+}
+
+.forge-header {
+  background: linear-gradient(90deg, #1a1a1a 0%, #2d2d3d 50%, #1a1a1a 100%);
+  border-bottom: 1px solid #3a3a4a;
+}
+
+.forge-metal {
+  background: linear-gradient(180deg, #3a3a4a 0%, #2a2a3a 100%);
+  border: 1px solid #4a4a5a;
+}
+
+/* Wyrd rainbow spectrum */
+.wyrd-glow {
+  background: linear-gradient(90deg,
+    #ff6b6b, #ffa36b, #ffd93d, #6bff6b, #6bc5ff, #a36bff, #ff6bff
+  );
+  background-size: 200% 100%;
+  animation: wyrdShift 6s ease infinite;
+}
+
+.wyrd-text {
+  background: linear-gradient(90deg,
+    #ff6b6b, #ffa36b, #ffd93d, #6bff6b, #6bc5ff, #a36bff, #ff6bff
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: wyrdShift 6s ease infinite;
+}
+
+.wyrd-border {
+  border-image: linear-gradient(90deg,
+    #ff6b6b, #ffa36b, #ffd93d, #6bff6b, #6bc5ff, #a36bff
+  ) 1;
+}
+
+@keyframes wyrdShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Crit glow — golden forge spark */
+@keyframes critGlow {
+  0%, 100% { box-shadow: 0 0 8px #ffd93d, 0 0 16px #ffa36b; }
+  50% { box-shadow: 0 0 16px #ffd93d, 0 0 32px #ffa36b, 0 0 48px #ff6b6b; }
+}
+
+.crit-glow {
+  animation: critGlow 1s ease-in-out infinite;
+}
+
+/* Fail glow — cold iron */
+@keyframes failGlow {
+  0%, 100% { box-shadow: 0 0 8px #ff4444; }
+  50% { box-shadow: 0 0 16px #ff4444, 0 0 24px #880000; }
+}
+
+.fail-glow {
+  animation: failGlow 0.8s ease-in-out infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px) rotate(-2deg); }
+  40% { transform: translateX(4px) rotate(2deg); }
+  60% { transform: translateX(-3px) rotate(-1deg); }
+  80% { transform: translateX(3px) rotate(1deg); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media print {
+  nav, .no-print { display: none !important; }
+  body { background: white; }
+  main { max-width: none; padding: 0; }
+}
