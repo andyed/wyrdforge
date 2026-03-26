@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useContentStore } from '../../stores/content-store.ts';
 import { generateId } from '../../utils/ids.ts';
+import { trackHomebrewCreated } from '../../utils/analytics.ts';
 import { SKILLS, SKILL_LABELS } from '../../types/rules.ts';
 import type { Skill } from '../../types/rules.ts';
 import type { Background, AsiChoice } from '../../types/content.ts';
@@ -59,6 +60,7 @@ export function BackgroundEditor({ backgroundId, onClose }: Props) {
       updateBackground(backgroundId, bg);
     } else {
       addBackground(bg);
+      trackHomebrewCreated('background', bg.name);
     }
     onClose();
   }

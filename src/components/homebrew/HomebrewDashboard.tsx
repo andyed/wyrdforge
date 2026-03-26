@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useContentStore } from '../../stores/content-store.ts';
+import { trackHomebrewImported } from '../../utils/analytics.ts';
 import { BackgroundEditor } from './BackgroundEditor.tsx';
 import { SpeciesEditor } from './SpeciesEditor.tsx';
 import { SKILL_LABELS } from '../../types/rules.ts';
@@ -50,6 +51,7 @@ export function HomebrewDashboard() {
           return;
         }
         const result = importPack(pack);
+        if (result.added > 0) trackHomebrewImported(result.added);
         alert(`Imported ${result.added} items.${result.skipped.length > 0 ? `\nSkipped:\n${result.skipped.join('\n')}` : ''}`);
       } catch {
         alert('Failed to parse homebrew file.');

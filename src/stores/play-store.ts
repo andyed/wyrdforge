@@ -3,6 +3,7 @@ import type { DiceGroup, DieRollResult, RollConfig, RollType, AdvantageMode } fr
 import { rollDie, rollDice } from '../utils/dice.ts';
 import { generateId } from '../utils/ids.ts';
 import { saveToStorage, loadFromStorage } from '../utils/persistence.ts';
+import { trackDiceRoll, trackFavoriteRollSaved } from '../utils/analytics.ts';
 
 const FAVORITES_KEY = 'wyrdforge-favorites';
 const SETTINGS_KEY = 'wyrdforge-play-settings';
@@ -123,6 +124,8 @@ export const usePlayStore = create<PlayState>((set, get) => {
         isRolling: true,
         rollHistory: [result, ...state.rollHistory].slice(0, MAX_HISTORY),
       });
+
+      trackDiceRoll(config.rollType, config.label, result.total, result.isCriticalHit, result.isCriticalFail, result.advantage);
     },
 
     quickRoll: (label, characterId, rollType, modifier) => {
@@ -144,6 +147,7 @@ export const usePlayStore = create<PlayState>((set, get) => {
     clearTempBonuses: () => set({ tempBonusDice: [], tempBonusFlat: 0 }),
 
     addFavoriteRoll: (config) => {
+      trackFavoriteRollSaved(config.label);
       set((state) => {
         const charFavs = state.favoriteRolls[config.characterId] ?? [];
         const updated = {

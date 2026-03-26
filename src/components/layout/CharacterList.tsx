@@ -3,6 +3,7 @@ import { useCharacterStore } from '../../stores/character-store.ts';
 import { useContentStore } from '../../stores/content-store.ts';
 import { useUIStore } from '../../stores/ui-store.ts';
 import { useRovingFocus } from '../../hooks/useRovingFocus.ts';
+import { trackCharacterExported, trackCharacterImported } from '../../utils/analytics.ts';
 
 export function CharacterList() {
   const { containerRef, handleKeyDown } = useRovingFocus('vertical');
@@ -27,6 +28,7 @@ export function CharacterList() {
     a.download = `${(char.name || 'character').replace(/\s+/g, '-').toLowerCase()}.wyrdforge.json`;
     a.click();
     URL.revokeObjectURL(url);
+    trackCharacterExported(char.name);
   }
 
   function importCharacter() {
@@ -63,6 +65,7 @@ export function CharacterList() {
         }
       }
       if (imported > 0) {
+        trackCharacterImported(imported);
         alert(`Imported ${imported} character${imported > 1 ? 's' : ''}.`);
       }
     };

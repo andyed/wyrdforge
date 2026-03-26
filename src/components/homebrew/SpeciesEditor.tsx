@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useContentStore } from '../../stores/content-store.ts';
 import { generateId } from '../../utils/ids.ts';
+import { trackHomebrewCreated } from '../../utils/analytics.ts';
 import type { Species, Trait, AsiChoice } from '../../types/content.ts';
 import type { Size } from '../../types/rules.ts';
 import { AsiPicker } from './AsiPicker.tsx';
@@ -72,6 +73,7 @@ export function SpeciesEditor({ speciesId, onClose }: Props) {
       updateSpecies(speciesId, sp);
     } else {
       addSpecies(sp);
+      trackHomebrewCreated('species', sp.name);
     }
     onClose();
   }

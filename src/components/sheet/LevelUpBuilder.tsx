@@ -11,6 +11,7 @@ import { abilityModifier } from '../../utils/modifiers.ts';
 import { rollDie, formatModifier } from '../../utils/dice.ts';
 import { generateId } from '../../utils/ids.ts';
 import { ABILITIES, ABILITY_LABELS, SKILLS, SKILL_LABELS } from '../../types/rules.ts';
+import { trackCharacterLevelUp, trackCustomActionCreated } from '../../utils/analytics.ts';
 
 type Tab = 'level' | 'scores' | 'skills' | 'actions' | 'features';
 
@@ -40,6 +41,8 @@ export function LevelUpBuilder({ character, onClose }: { character: Character; o
       level: newLevel,
       hitPoints: { max: newMaxHP, current: newMaxHP, temp: 0 },
     });
+
+    trackCharacterLevelUp(character.name, character.level, newLevel);
   }
 
   function handleRollHP() {
@@ -90,8 +93,9 @@ export function LevelUpBuilder({ character, onClose }: { character: Character; o
       flatModifier: 0,
     };
     updateCharacter(character.id, {
-      customActions: [...character.customActions, action],
+      customActions: [...(character.customActions ?? []), action],
     });
+    trackCustomActionCreated(action.name || 'unnamed', action.rollType);
   }
 
   function updateAction(id: string, patch: Partial<CustomAction>) {

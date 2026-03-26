@@ -9,6 +9,7 @@ import { StepEquipment } from './StepEquipment.tsx';
 import { StepReview } from './StepReview.tsx';
 import { computeMaxHP } from '../../selectors/hit-points.ts';
 import { computeFinalScores } from '../../selectors/ability-scores.ts';
+import { trackCharacterCreated } from '../../utils/analytics.ts';
 
 const STEP_LABELS: Record<string, string> = {
   species: 'Species',
@@ -54,6 +55,11 @@ export function CreationWizard() {
       hitPoints: { max: maxHP, current: maxHP, temp: 0 },
       savingThrowProficiencies: cls?.savingThrows ? [...cls.savingThrows] : [],
     });
+
+    const species = useContentStore.getState().species[character.speciesId];
+    const bg = useContentStore.getState().backgrounds[character.backgroundId];
+    trackCharacterCreated(species?.name ?? 'unknown', cls?.name ?? 'unknown', bg?.name ?? 'unknown');
+
     setView('sheet');
   }
 

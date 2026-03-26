@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import type { Character } from '../../types/character.ts';
 import { useContentStore } from '../../stores/content-store.ts';
 import { usePlayStore } from '../../stores/play-store.ts';
 import { useUIStore } from '../../stores/ui-store.ts';
+import { trackPlayModeEntered } from '../../utils/analytics.ts';
 import { QuickRollPanel } from './QuickRollPanel.tsx';
 import { RollResultDisplay } from './RollResultDisplay.tsx';
 import { RollControls } from './RollControls.tsx';
@@ -15,6 +17,10 @@ export function PlayMode({ character }: { character: Character }) {
   const setView = useUIStore((s) => s.setView);
   const species = useContentStore((s) => s.species[character.speciesId]);
   const classDef = useContentStore((s) => s.classes[character.classId]);
+
+  useEffect(() => {
+    trackPlayModeEntered(character.name, classDef?.name ?? 'unknown', character.level);
+  }, [character.id]);
 
   return (
     <div className="fixed inset-0 z-50 forge-gradient flex flex-col">
