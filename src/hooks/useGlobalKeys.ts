@@ -15,8 +15,13 @@ export function useGlobalKeys() {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       // Don't intercept when typing in inputs
-      const tag = (e.target as HTMLElement)?.tagName;
+      const target = e.target as HTMLElement;
+      const tag = target?.tagName;
       if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+
+      // Don't intercept Enter/Space on focused buttons — let them fire their click handler
+      const isFocusedButton = tag === 'BUTTON' && (e.key === 'Enter' || e.key === ' ');
+      if (isFocusedButton) return;
 
       // Escape — navigate back
       if (e.key === 'Escape') {
