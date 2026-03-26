@@ -11,10 +11,14 @@ import { computeAC, computeInitiative, computeSpellDC, computeSpellAttack } from
 import { proficiencyBonus } from '../../utils/modifiers.ts';
 import { formatModifier } from '../../utils/dice.ts';
 import { LevelUpBuilder } from './LevelUpBuilder.tsx';
+import type { LevelSnapshot } from '../../types/play.ts';
+
+const EMPTY_SNAPSHOTS: LevelSnapshot[] = [];
 
 export function CharacterSheet({ character }: { character: Character }) {
   const [showLevelUp, setShowLevelUp] = useState(false);
-  const snapshots = usePartyStore((s) => s.characterSnapshots[character.id] ?? []);
+  const snapshotsMap = usePartyStore((s) => s.characterSnapshots);
+  const snapshots = snapshotsMap[character.id] ?? EMPTY_SNAPSHOTS;
   const updateCharacter = useCharacterStore((s) => s.updateCharacter);
   const species = useContentStore((s) => s.species[character.speciesId]);
   const background = useContentStore((s) => s.backgrounds[character.backgroundId]);
@@ -47,6 +51,7 @@ export function CharacterSheet({ character }: { character: Character }) {
       {/* Header */}
       <div className="bg-stone-900 text-white rounded-lg p-4 flex items-center gap-6">
         <button
+          data-testid="play-button"
           onClick={() => useUIStore.getState().setView('play')}
           className="bg-indigo-700 hover:bg-indigo-600 px-4 py-2 rounded-lg text-sm font-bold transition-colors"
         >
