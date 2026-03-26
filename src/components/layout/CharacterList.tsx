@@ -1,3 +1,4 @@
+import type { Character } from '../../types/character.ts';
 import { useCharacterStore } from '../../stores/character-store.ts';
 import { useContentStore } from '../../stores/content-store.ts';
 import { useUIStore } from '../../stores/ui-store.ts';
@@ -13,9 +14,60 @@ export function CharacterList() {
   const deleteCharacter = useCharacterStore((s) => s.deleteCharacter);
   const duplicateCharacter = useCharacterStore((s) => s.duplicateCharacter);
   const createCharacter = useCharacterStore((s) => s.createCharacter);
+  const updateCharacter = useCharacterStore((s) => s.updateCharacter);
   const { setView, setWizardStep } = useUIStore();
   const classes = useContentStore((s) => s.classes);
   const species = useContentStore((s) => s.species);
+
+  function exportCharacter(char: Character) {
+    const blob = new Blob([JSON.stringify(char, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${(char.name || 'character').replace(/\s+/g, '-').toLowerCase()}.wyrdforge.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function importCharacter() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.multiple = true;
+    input.onchange = async () => {
+      if (!input.files) return;
+      let imported = 0;
+      for (const file of Array.from(input.files)) {
+        try {
+          const text = await file.text();
+          const char = JSON.parse(text) as Character;
+          if (!char.name && !char.classId) {
+            alert(`${file.name} doesn't look like a WyrdForge character.`);
+            continue;
+          }
+          // Create a new character and overwrite with imported data
+          const now = new Date().toISOString();
+          const newCharId = createCharacter();
+          updateCharacter(newCharId, {
+            ...char,
+            id: newCharId,
+            status: char.status ?? 'active',
+            customActions: char.customActions ?? [],
+            customFeatures: char.customFeatures ?? [],
+            createdAt: now,
+            updatedAt: now,
+          });
+          imported++;
+        } catch {
+          alert(`Failed to parse ${file.name}`);
+        }
+      }
+      if (imported > 0) {
+        alert(`Imported ${imported} character${imported > 1 ? 's' : ''}.`);
+      }
+    };
+    input.click();
+  }
 
   function handleOpen(id: string, status: 'draft' | 'active') {
     setActive(id);
@@ -50,7 +102,15 @@ export function CharacterList() {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4">Your Characters</h2>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-bold">Your Characters</h2>
+        <button
+          onClick={importCharacter}
+          className="text-sm px-3 py-1.5 rounded bg-stone-200 hover:bg-stone-300 text-stone-700"
+        >
+          Import Character
+        </button>
+      </div>
       <div className="grid gap-3" ref={containerRef} onKeyDown={handleKeyDown} role="listbox" aria-label="Characters">
         {characters.map((char, i) => {
           const cls = classes[char.classId];
@@ -86,6 +146,12 @@ export function CharacterList() {
                   className="text-sm px-3 py-1 rounded bg-stone-100 hover:bg-stone-200 text-stone-700"
                 >
                   {char.status === 'draft' ? 'Continue' : 'Open'}
+                </button>
+                <button
+                  onClick={() => exportCharacter(char)}
+                  className="text-sm px-3 py-1 rounded bg-stone-100 hover:bg-stone-200 text-stone-500"
+                >
+                  Export
                 </button>
                 <button
                   onClick={() => duplicateCharacter(char.id)}
