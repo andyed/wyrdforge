@@ -3,6 +3,7 @@ import type { Character } from '../../types/character.ts';
 import { useContentStore } from '../../stores/content-store.ts';
 import { useCharacterStore } from '../../stores/character-store.ts';
 import { useUIStore } from '../../stores/ui-store.ts';
+import { usePartyStore } from '../../stores/party-store.ts';
 import { ABILITIES, ABILITY_LABELS, SKILL_LABELS } from '../../types/rules.ts';
 import { computeFinalScores, computeModifiers } from '../../selectors/ability-scores.ts';
 import { computeSkillModifiers } from '../../selectors/skills.ts';
@@ -13,11 +14,12 @@ import { LevelUpBuilder } from './LevelUpBuilder.tsx';
 
 export function CharacterSheet({ character }: { character: Character }) {
   const [showLevelUp, setShowLevelUp] = useState(false);
+  const snapshots = usePartyStore((s) => s.characterSnapshots[character.id] ?? []);
+  const updateCharacter = useCharacterStore((s) => s.updateCharacter);
   const species = useContentStore((s) => s.species[character.speciesId]);
   const background = useContentStore((s) => s.backgrounds[character.backgroundId]);
   const classDef = useContentStore((s) => s.classes[character.classId]);
   const feats = useContentStore((s) => s.feats);
-  const updateCharacter = useCharacterStore((s) => s.updateCharacter);
 
   const finalScores = computeFinalScores(character);
   const mods = computeModifiers(finalScores);
@@ -60,8 +62,40 @@ export function CharacterSheet({ character }: { character: Character }) {
         </button>
         <div className="flex-1">
           <h2 className="text-2xl font-bold">{character.name || 'Unnamed'}</h2>
-          <div className="text-stone-400 text-sm">
-            {species?.name} {classDef?.name} · Level {character.level} · {background?.name}
+          <div className="text-stone-400 text-sm flex items-center gap-1">
+            {species?.name} {classDef?.name} ·{' '}
+            {snapshots.length > 0 ? (
+              <select
+                value={character.level}
+                onChange={(e) => {
+                  const targetLevel = Number(e.target.value);
+                  if (targetLevel === character.level) return;
+                  const snap = snapshots.find((s) => s.level === targetLevel);
+                  if (snap) {
+                    // Restore the snapshot but keep the same id and timestamps
+                    updateCharacter(character.id, {
+                      ...snap.character,
+                      id: character.id,
+                      createdAt: character.createdAt,
+                    });
+                  }
+                }}
+                className="bg-stone-800 text-stone-300 border border-stone-600 rounded px-1.5 py-0.5 text-sm cursor-pointer
+                  hover:border-stone-400 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              >
+                {snapshots.map((s) => (
+                  <option key={s.level} value={s.level}>
+                    Level {s.level}
+                  </option>
+                ))}
+                <option value={character.level}>
+                  Level {character.level} (current)
+                </option>
+              </select>
+            ) : (
+              <span>Level {character.level}</span>
+            )}
+            {' '}· {background?.name}
           </div>
         </div>
         <div className="text-center">
