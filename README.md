@@ -2,6 +2,8 @@
 
 D&D 2024 character sheet builder and immersive play mode die roller.
 
+**[Try it live](https://andyed.github.io/wyrdforge/)**
+
 **Created by Benjamin Edmonds**
 
 ## Features
